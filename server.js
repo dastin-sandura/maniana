@@ -6,12 +6,40 @@ app.listen(port);
 
 console.log('todo list RESTful API server started on: ' + port);
 
-app.get('/', function(req, res) {
-    console.log("Got it on the / directory");
-    res.sendFile(__dirname + '/app/index.html');
+//Variables which wll be used for every new server route specified in the server configuration.
+let requestUrlPath;
+let resourceFileDirectory;
+
+//Images
+app.get('/banner.jpg', function (req, res) {
+  res.sendFile(__dirname + '/app/images/banner.jpg');
 });
 
-app.get('/banner.jpg', function(req, res) {
-    console.log("Got it on the / directory");
-    res.sendFile(__dirname + '/app/images/banner.jpg');
+//HTML
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/app/index.html');
+});
+
+//JS
+app.get('/scripts/front.js', function (req, res) {
+  res.sendFile(__dirname + '/app/scripts/front.js');
+});
+
+app.get('/scripts/main.js', function (req, res) {
+  res.sendFile(__dirname + '/app/scripts/main.js');
+});
+
+app.get('/models/task.js', function (req, res) {
+  res.sendFile(__dirname + '/app/models/task.js');
+});
+
+// CSS
+app.get('/styles/taskForm.css', function (req, res) {
+  res.sendFile(__dirname + '/app/styles/taskForm.css');
+});
+
+//Offline mock data
+app.get('/mock-task-list', function (req, res) {
+  console.error("Sending the funky file");
+  res.sendFile(__dirname + '/app/mock-task-list.json');
 });
