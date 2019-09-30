@@ -5,6 +5,7 @@ let $registeredTasksList = document.querySelector('#registered-tasks-list');
 //End point from Mockapi.io website
 let mockDataEndpoint = 'http://5d8de5c5370f02001405c5e5.mockapi.io/maniana/mock-task-list';
 
+//Auto populate the registered task list from the mock.api
 fetch(mockDataEndpoint)
     .then(resp => {
         let responseInJSON = resp.json();
@@ -28,15 +29,15 @@ let getValueFromInput = function getValueFromInput(querySelector) {
 }
 
 let addNewTaskFunction = function addNewTaskFunction() {
-    let $newTaskSummaryInputInfo = document.querySelector("#new-task-summary-error");
+    let $newTaskSummaryInputError = document.querySelector("#new-task-summary-error");
     let summaryInputText = getValueFromInput("#new-task-summary");
     if (summaryInputText) {
         let newTask = new Task(summaryInputText);
         $registeredTasksList.appendChild(newTask.toParagraph());
-        $newTaskSummaryInputInfo.setAttribute("class", "");
+        $newTaskSummaryInputError.setAttribute("class", "");
     } else {
-        $newTaskSummaryInputInfo.setAttribute("class", "red");
-        $newTaskSummaryInputInfo.innerText = "Summary cannot be empty";
+        $newTaskSummaryInputError.setAttribute("class", "red");
+        $newTaskSummaryInputError.innerText = "Summary cannot be empty";
     }
 };
 let $addNewItemButton = document.querySelector('#add-button');
