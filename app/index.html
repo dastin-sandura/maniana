@@ -1,5 +1,4 @@
 <html>
-
 <h1>Plan your tomorrow to focus on what's important today!</h1>
 <div>
     <img style="width:600px" src='banner.jpg'
@@ -8,13 +7,18 @@
 <a href="https://www.freepik.com/free-photos-vectors/people">People photo created by rawpixel.com - www.freepik.com</a>
 <hr />
 
-<p id="new-task-form">Create new task: <input id="task-input" />
-</p>
-<span>
-    <button id="add-button">Add new task</button>
-</span>
+<form id="new-task-form">
+    <fieldset>
+        <legend><b>Create new task:</b></legend>
+        Task summary: <input type="text" id="new-task-summary">
+        <span id="new-task-summary-error"></span>
+        <br>
+        <button id="add-button" type="button">Create!</button>
+    </fieldset>
+</form>
+
 <h2>Registered tasks:</h2>
-<div class=task-list>
+<div id=registered-tasks-list>
 </div>
 <script src="scripts/main.js" type="module"></script>
 <!-- <script src="scripts/models/task.js" type="module"></script> -->
