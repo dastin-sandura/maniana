@@ -6,10 +6,6 @@ app.listen(port);
 
 console.log('todo list RESTful API server started on: ' + port);
 
-//Variables which wll be used for every new server route specified in the server configuration.
-let requestUrlPath;
-let resourceFileDirectory;
-
 //Images
 app.get('/banner.jpg', function (req, res) {
   res.sendFile(__dirname + '/app/images/banner.jpg');
@@ -31,6 +27,10 @@ app.get('/scripts/main.js', function (req, res) {
 
 app.get('/models/task.js', function (req, res) {
   res.sendFile(__dirname + '/app/models/task.js');
+});
+
+app.get('/models/taskList.js', function (req, res) {
+  res.sendFile(__dirname + '/app/models/taskList.js');
 });
 
 // CSS

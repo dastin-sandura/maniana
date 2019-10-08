@@ -1,6 +1,13 @@
 export class Task {
 
-    constructor(summary) {
+    parentTaskList;
+
+    summary;
+
+    $doneButton;
+
+    constructor(parentTaskList, summary) {
+        this.parentTaskList = parentTaskList;
         this.summary = "Task: " + summary;
     }
 
@@ -8,23 +15,17 @@ export class Task {
         return `Task: ${this.summary}`;
     }
 
-    toParagraph() {
-        let $paragraphWithTaskSummary = document.createElement("p");
-        $paragraphWithTaskSummary.innerText = this.summary;
-        let $doneButton = document.createElement("button");
-        $doneButton.innerText = "Task done!";
-        $doneButton.classList.add("task-done-button");
-        $doneButton.addEventListener('click', this.markTaskAsDone);
-        // console.log($doneButton.parentNode.parentNode.removeChild);
-        $paragraphWithTaskSummary.appendChild($doneButton);
-        return $paragraphWithTaskSummary;
+    deleteTask() {
+        let parentParagraph = this.$doneButton.parentNode;
+        parentParagraph.parentNode.removeChild(parentParagraph);
+        this.parentTaskList.removeTask(this);
+        console.log(this.parentTaskList.tasks);
     }
 
-    markTaskAsDone() {
-        console.log(this);
-        let parentParagraph = this.parentNode;
-        parentParagraph.parentNode.removeChild(parentParagraph);
-        // console.log(this.parentNode.removeChild(this));
-
+    toParagraph() {
+        let $paragraphWithTaskSummary = document.createElement("p");
+        $paragraphWithTaskSummary.classList.add("list-item");
+        $paragraphWithTaskSummary.innerText = this.summary;
+        return $paragraphWithTaskSummary;
     }
 }
